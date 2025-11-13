@@ -7,16 +7,17 @@ public class TilesSpawner : MonoBehaviour
     [SerializeField] private normalTile normalTilePrefab;
 
     [SerializeField] private float spawnY = 6f;
-    [SerializeField] private float[] xPositions = new float[] {-2.25f, -0.75f, 0.75f, 2.25f};
+    [SerializeField] private float[] xPositions = new float[] {-405f, -135f, 135f, 405f};
 
-    public void Awake()
+    public void Start()
     {
         PoolManager.Instance.CreatePool<normalTile>("normalTiles",normalTilePrefab,50);
     }
 
-    public void SpawnTile(int laneIndex)
-    {
-        Vector3 pos = new Vector3(xPositions[laneIndex], spawnY, 0f);
-        PoolManager.Instance.GetObject<normalTile>("normalTiles", pos, Quaternion.identity);
+    public void SpawnTile(NoteData note)
+    {          
+        Vector3 pos = new Vector3(xPositions[note.lane], spawnY, 0f);
+        if (note.type == NoteType.Normal)
+            PoolManager.Instance.GetObject<normalTile>("normalTiles", pos, Quaternion.identity);
     }
 }
