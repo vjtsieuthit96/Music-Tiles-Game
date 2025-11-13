@@ -10,6 +10,7 @@ public enum NoteType
     Normal,
     Hold
 }
+
 [Serializable]
 public class NoteData
 {
@@ -21,8 +22,7 @@ public class NoteData
 
 public class BeatmapReader : MonoBehaviour
 {
-    [SerializeField] private string beatmapFileName = "song1.txt";
-    public event System.Action<NoteData> OnNoteSpawn;
+    public event Action<NoteData> OnNoteSpawn;
 
     private List<NoteData> notes = new List<NoteData>();
     private AudioSource musicSource;
@@ -32,20 +32,29 @@ public class BeatmapReader : MonoBehaviour
         musicSource = FindObjectOfType<GameManager>().GetComponent<AudioSource>();
     }
 
-    public void LoadBeatmap()
+    public void LoadBeatmap(string songName, Action onComplete)
     {
-        string path = Path.Combine(Application.streamingAssetsPath, beatmapFileName);
+        notes.Clear();
 
-#if UNITY_ANDROID && !UNITY_EDITOR        
-        StartCoroutine(LoadFromAndroid(path));
+        string fileName = songName + ".txt";
+        string path = Path.Combine(Application.streamingAssetsPath, "Beatmaps", fileName);
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+    StartCoroutine(LoadFromAndroid(path, onComplete)); // ✅ truyền callback
 #else
+        if (!File.Exists(path))
+        {
+            Debug.LogError("Không tìm thấy beatmap: " + path);
+            return;
+        }
+
         string[] lines = File.ReadAllLines(path);
         ParseLines(lines);
-        StartCoroutine(PlayNotes());
+        StartCoroutine(PlayNotes(onComplete));
 #endif
     }
 
-    private IEnumerator LoadFromAndroid(string path)
+    private IEnumerator LoadFromAndroid(string path, Action onComplete)
     {
         UnityWebRequest request = UnityWebRequest.Get(path);
         yield return request.SendWebRequest();
@@ -58,7 +67,7 @@ public class BeatmapReader : MonoBehaviour
 
         string[] lines = request.downloadHandler.text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         ParseLines(lines);
-        StartCoroutine(PlayNotes());
+        StartCoroutine(PlayNotes(onComplete));
     }
 
     private void ParseLines(string[] lines)
@@ -91,8 +100,9 @@ public class BeatmapReader : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayNotes()
+    private IEnumerator PlayNotes(Action onComplete)
     {
+        onComplete?.Invoke();
         foreach (var note in notes)
         {
             while (musicSource.time < note.time)
@@ -111,4 +121,3 @@ public class BeatmapReader : MonoBehaviour
         return 1;
     }
 }
-
