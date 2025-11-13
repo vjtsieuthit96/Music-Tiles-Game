@@ -31,7 +31,7 @@ public class HoldTile : MonoBehaviour
 
         if (transform.position.y < targetY - 1.5f && !isHolding)
         {
-            PoolManager.Instance.ReturnObject("normalTiles", this);
+            PoolManager.Instance.ReturnObject("holdTiles", this);
             FindObjectOfType<GameManager>().TriggerGameOver();            
         }
 
@@ -95,7 +95,8 @@ public class HoldTile : MonoBehaviour
 
     private void OnEnable()
     {
-        tile.transform.localScale = new Vector3(0.6f, 1.5f, 1f);
+        speed = Random.Range(3.5f, 5f);
+        tile.transform.localScale = new Vector3(0.5f, 1.5f, 1f);
         isHolding = false;
         isCompleted = false;
         isMissed = false;

@@ -9,21 +9,17 @@ public class normalTile : MonoBehaviour
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private SpriteRenderer spriteRenderer;    
     private bool isHit = false;
-
+    
     private void Update()
     {
         if (!isHit)        
            transform.Translate(Vector3.down * speed * Time.deltaTime);
-        //if (transform.position.y < targetY - 1.5f && !isHit)
-        //{
-        //    PoolManager.Instance.ReturnObject("normalTiles", this);
-        //    FindObjectOfType<GameManager>().TriggerGameOver();
-        //}
-    }
-    private void Start()
-    {
-        
-    }
+        if (transform.position.y < targetY - 1.5f && !isHit)
+        {
+            PoolManager.Instance.ReturnObject("normalTiles", this);
+            FindObjectOfType<GameManager>().TriggerGameOver();
+        }
+    }   
 
     public void OnHit()
     {
@@ -68,6 +64,7 @@ public class normalTile : MonoBehaviour
     }
     private void OnEnable()
     {
+        speed = Random.Range(3.5f, 5f);
         isHit = false;
         transform.localScale = new Vector3(0.5f,0.6f);
 
