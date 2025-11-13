@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private TilesSpawner tilesSpawner;
-    [SerializeField] private BeatmapReader beatmapReader;
+    [SerializeField] private TilesSpawner tilesSpawner;  
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private BeatmapReader beatmapReader;
     public bool IsGameOver = false;
     [Header("Feedback Sounds")]
     [SerializeField] private AudioSource sfxSource;
@@ -21,10 +21,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        musicSource.Play();
-        beatmapReader.LoadBeatmap();
         beatmapReader.OnNoteSpawn += tilesSpawner.SpawnTile;
     }
+    public void SetAudioClip(AudioClip clip)
+    {
+        musicSource.clip = clip;
+    }
+    public void PlayMusic()
+    {
+        musicSource.Play();        
+    }
+
 
     public void OnTileHit(HitResult result)
     {
@@ -39,11 +46,6 @@ public class GameManager : MonoBehaviour
             sfxSource.PlayOneShot(clip);
     }
 
-    public void OnHoldCompleted()
-    {
-        //scoreManager.AddHoldBonus();
-        //uiManager.ShowFeedback("Hold Bonus!");
-    }
     private AudioClip GetClipByHitResult(HitResult result)
     {
         return result switch
