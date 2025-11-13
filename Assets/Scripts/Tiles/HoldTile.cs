@@ -4,7 +4,7 @@ public class HoldTile : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float targetY = -4.5f;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject tile;
     [SerializeField] private GameObject holdEffect;
     [SerializeField] private AudioSource holdSound;
     private float holdDuration;
@@ -13,13 +13,12 @@ public class HoldTile : MonoBehaviour
     private bool isCompleted = false;
     private bool isMissed = false;
     private HitResult clickResult;
-
     private float initialScaleY;
 
     public void Initialize(NoteData note)
     {
         holdDuration = note.duration;
-        initialScaleY = transform.localScale.y;       
+        initialScaleY = tile.transform.localScale.y;
     }
 
     private void Update()
@@ -39,11 +38,9 @@ public class HoldTile : MonoBehaviour
         if (isHolding)
         {
             holdTimer += Time.deltaTime;
-
-            float progress = Mathf.Clamp01(holdTimer / holdDuration);
-            float newScaleY = Mathf.Lerp(initialScaleY, 0f, progress);
-            transform.localScale = new Vector3(transform.localScale.x, newScaleY, transform.localScale.z);
-
+            float progress = Mathf.Clamp01(holdTimer / holdDuration);            
+            float newScaleY = Mathf.Lerp(initialScaleY,0.15f, progress);
+            tile.transform.localScale = new Vector3(tile.transform.localScale.x, newScaleY, tile.transform.localScale.z);
             if (holdTimer >= holdDuration)
             {
                 CompleteHold();
@@ -98,20 +95,11 @@ public class HoldTile : MonoBehaviour
 
     private void OnEnable()
     {
+        tile.transform.localScale = new Vector3(0.6f, 1.5f, 1f);
         isHolding = false;
         isCompleted = false;
         isMissed = false;
         holdTimer = 0f;
         holdEffect.SetActive(false);
-
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer != null)
-        {
-            Color c = spriteRenderer.color;
-            c.a = 1f;
-            spriteRenderer.color = c;
-        }
     }
 }
