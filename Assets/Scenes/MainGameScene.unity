@@ -364,6 +364,7 @@ MonoBehaviour:
   songNames:
   - Radio
   - The History
+  - Kho Bau
   gameManager: {fileID: 1340728449}
   beatmapReader: {fileID: 1340728446}
   panel: {fileID: 183054124}
