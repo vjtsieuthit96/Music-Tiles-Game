@@ -79,7 +79,7 @@ public class BeatmapReader : MonoBehaviour
             {
                 note.type = NoteType.Hold;
                 float endTime = float.Parse(parts[2]);
-                note.duration = endTime - note.time;
+                note.duration = Mathf.Max(0f, endTime - note.time);
             }
             else
             {

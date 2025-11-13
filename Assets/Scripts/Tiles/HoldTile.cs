@@ -5,7 +5,8 @@ public class HoldTile : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float targetY = -4.5f;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
+    [SerializeField] private GameObject holdEffect;
+    [SerializeField] private AudioSource holdSound;
     private float holdDuration;
     private float holdTimer;
     private bool isHolding = false;
@@ -18,20 +19,21 @@ public class HoldTile : MonoBehaviour
     public void Initialize(NoteData note)
     {
         holdDuration = note.duration;
-        initialScaleY = 1f + holdDuration * 2f;
-        transform.localScale = new Vector3(0.5f, initialScaleY, 1f);
+        initialScaleY = transform.localScale.y;       
     }
 
     private void Update()
     {
         if (isCompleted || isMissed) return;
 
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        if (!isHolding)        
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
+        
 
-        if (transform.position.y < targetY - 1.5f)
+        if (transform.position.y < targetY - 1.5f && !isHolding)
         {
-            MissHold();
-            return;
+            PoolManager.Instance.ReturnObject("normalTiles", this);
+            FindObjectOfType<GameManager>().TriggerGameOver();            
         }
 
         if (isHolding)
@@ -53,6 +55,8 @@ public class HoldTile : MonoBehaviour
     {
         if (isCompleted || isMissed) return;
         isHolding = true;
+        holdSound.Play();
+        holdEffect.SetActive(true);
         float distance = Mathf.Abs(transform.position.y - targetY);
         HitResult result = distance switch
         {
@@ -61,7 +65,7 @@ public class HoldTile : MonoBehaviour
             <= 2.5f => HitResult.Good,
             _ => HitResult.Miss
         };
-        clickResult = result;
+        clickResult = result;        
         holdTimer = 0f;
     }
 
@@ -77,7 +81,8 @@ public class HoldTile : MonoBehaviour
 
     private void CompleteHold()
     {
-        isCompleted = true;       
+        isCompleted = true;
+        holdSound.Stop();
         FindObjectOfType<GameManager>().OnTileHit(clickResult);
         PoolManager.Instance.ReturnObject("holdTiles", this);
     }
@@ -85,6 +90,8 @@ public class HoldTile : MonoBehaviour
     private void MissHold()
     {
         isMissed = true;
+        holdSound.Stop();
+        holdEffect.SetActive(false);
         FindObjectOfType<GameManager>().OnTileHit(HitResult.Miss);
         PoolManager.Instance.ReturnObject("holdTiles", this);
     }
@@ -95,6 +102,7 @@ public class HoldTile : MonoBehaviour
         isCompleted = false;
         isMissed = false;
         holdTimer = 0f;
+        holdEffect.SetActive(false);
 
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();

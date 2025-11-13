@@ -14,11 +14,11 @@ public class normalTile : MonoBehaviour
     {
         if (!isHit)        
            transform.Translate(Vector3.down * speed * Time.deltaTime);
-        //if (transform.position.y < targetY - 1.5f && !isHit)
-        //{
-        //    PoolManager.Instance.ReturnObject("normalTiles", this);
-        //    FindObjectOfType<GameManager>().TriggerGameOver();
-        //}
+        if (transform.position.y < targetY - 1.5f && !isHit)
+        {
+            PoolManager.Instance.ReturnObject("normalTiles", this);
+            FindObjectOfType<GameManager>().TriggerGameOver();
+        }
     }
     private void Start()
     {

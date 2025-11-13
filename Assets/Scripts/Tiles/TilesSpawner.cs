@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class TilesSpawner : MonoBehaviour
             PoolManager.Instance.GetObject<normalTile>("normalTiles", pos, Quaternion.identity);
         if (note.type == NoteType.Hold)
         {
+            pos.y += 1f;
             HoldTile holdTile = PoolManager.Instance.GetObject<HoldTile>("holdTiles", pos, Quaternion.identity);
             holdTile.Initialize(note);
         }
