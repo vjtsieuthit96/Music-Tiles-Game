@@ -32,8 +32,9 @@ public class ScoreManager : MonoBehaviour
 
             return;
         }
-
+        
         combo = (lastHit == null || lastHit != result) ? 0 : combo + 1;
+        
         lastHit = result;
 
         int baseScore = result switch
@@ -44,13 +45,13 @@ public class ScoreManager : MonoBehaviour
             _ => 0
         };
 
-        score += baseScore + (combo);
+        score += baseScore + combo;
     }
 
-    public void AddHoldBonus()
-    {
-        combo++;
-        score += 5 + (combo * 10);
-        lastHit = HitResult.Perfect;
-    }
+    //public void AddHoldBonus()
+    //{
+    //    combo++;
+    //    score += 5 + (combo * 10);
+    //    lastHit = HitResult.Perfect;
+    //}
 }

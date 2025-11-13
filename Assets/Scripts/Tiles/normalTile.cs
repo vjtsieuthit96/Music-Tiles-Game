@@ -21,6 +21,7 @@ public class normalTile : MonoBehaviour
 
     public void OnHit()
     {
+        if (isHit) return;
         isHit = true;
         //add score logic or effects here
         float distance = Mathf.Abs(transform.position.y - targetY);
@@ -30,8 +31,7 @@ public class normalTile : MonoBehaviour
             <= 1.6f => HitResult.Great,
             <= 2.5f => HitResult.Good,
             _ => HitResult.Miss
-        };
-        Debug.Log($"[Tile Hit] y = {transform.position.y:F2}, targetY = {targetY}, result = {result}");
+        };        
         FindObjectOfType<GameManager>().OnTileHit(result);
         PoolManager.Instance.ReturnObject("normalTiles", this);
     }

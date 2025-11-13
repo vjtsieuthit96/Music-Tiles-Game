@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TilesSpawner tilesSpawner;
     [SerializeField] private BeatmapReader beatmapReader;
     [SerializeField] private ScoreManager scoreManager;
-    //[SerializeField] private UIManager uiManager;
+    [SerializeField] private UIManager uiManager;
 
     private void Start()
     {
@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     public void OnTileHit(HitResult result)
     {
         scoreManager.AddScore(result);
-        //uiManager.ShowFeedback(result.ToString());
+        uiManager.UpdateScore(scoreManager.CurrentScore);
+        uiManager.ShowFeedback(result.ToString(),result);
     }
 
     public void OnHoldCompleted()
     {
-        scoreManager.AddHoldBonus();
+        //scoreManager.AddHoldBonus();
         //uiManager.ShowFeedback("Hold Bonus!");
     }
 
