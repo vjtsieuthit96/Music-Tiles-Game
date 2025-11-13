@@ -699,9 +699,9 @@ MonoBehaviour:
   - {fileID: 1604744264}
   - {fileID: 233563709}
   - {fileID: 444065093}
-  glowColor1: {r: 1, g: 0.85, b: 0.3, a: 1}
-  glowColor2: {r: 1, g: 1, b: 0.6, a: 1}
-  glowSpeed: 2
+  glowColor1: {r: 1, g: 0.80873823, b: 0.0990566, a: 1}
+  glowColor2: {r: 1, g: 1, b: 1, a: 1}
+  glowSpeed: 20
   feedbackText: {fileID: 1877507188}
   feedbackDuration: 1
   perfectGradient: {fileID: 11400000, guid: 479a66fa4b094512a62b0a8e553ad95a, type: 2}
@@ -1186,6 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalTilePrefab: {fileID: -7001197846080757667, guid: f4c63ed1885531a47a173344bec7a808, type: 3}
+  holdTilePrefab: {fileID: 4359659277966412067, guid: 28044ae6d96a337418ac2d292b689881, type: 3}
   spawnY: 6
   xPositions:
   - -2.25
