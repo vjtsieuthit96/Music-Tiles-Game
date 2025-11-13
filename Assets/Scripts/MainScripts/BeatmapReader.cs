@@ -36,9 +36,8 @@ public class BeatmapReader : MonoBehaviour
     {
         string path = Path.Combine(Application.streamingAssetsPath, beatmapFileName);
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        string androidpath = Path.Combine(Application.streamingAssetsPath, beatmapFileName);
-        StartCoroutine(LoadFromAndroid(androidpath));
+#if UNITY_ANDROID && !UNITY_EDITOR        
+        StartCoroutine(LoadFromAndroid(path));
 #else
         string[] lines = File.ReadAllLines(path);
         ParseLines(lines);

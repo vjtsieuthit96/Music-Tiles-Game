@@ -5,10 +5,12 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     private Camera mainCamera;
+    private GameManager gameManager;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -22,6 +24,8 @@ public class InputHandler : MonoBehaviour
 
     private void HandleMouseInput()
     {
+        if(gameManager.IsGameOver)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -37,6 +41,8 @@ public class InputHandler : MonoBehaviour
 
     private void HandleTouchInput()
     {
+        if (gameManager.IsGameOver)
+            return;
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.GetTouch(i);
