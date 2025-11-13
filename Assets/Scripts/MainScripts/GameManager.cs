@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,10 +30,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void TriggerGameOver()
-    {
-        //uiManager.ShowFeedback("Game Over!");
+    {        
         musicSource.Stop();
-        Debug.Log("Game Over triggered in GameManager.");
-        Time.timeScale = 0f; // Pause the game
+        SceneManager.LoadScene("GameOverScene");
+        Debug.Log("Game Over triggered in GameManager.");        
     }
 }

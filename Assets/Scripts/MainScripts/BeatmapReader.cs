@@ -37,7 +37,8 @@ public class BeatmapReader : MonoBehaviour
         string path = Path.Combine(Application.streamingAssetsPath, beatmapFileName);
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        StartCoroutine(LoadFromAndroid(path));
+        string androidpath = Path.Combine(Application.streamingAssetsPath, beatmapFileName);
+        StartCoroutine(LoadFromAndroid(androidpath));
 #else
         string[] lines = File.ReadAllLines(path);
         ParseLines(lines);
@@ -56,7 +57,7 @@ public class BeatmapReader : MonoBehaviour
             yield break;
         }
 
-        string[] lines = request.downloadHandler.text.Split('\n');
+        string[] lines = request.downloadHandler.text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         ParseLines(lines);
         StartCoroutine(PlayNotes());
     }
