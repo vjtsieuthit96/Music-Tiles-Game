@@ -47,11 +47,5 @@ public class ScoreManager : MonoBehaviour
 
         score += baseScore + combo;
     }
-
-    //public void AddHoldBonus()
-    //{
-    //    combo++;
-    //    score += 5 + (combo * 10);
-    //    lastHit = HitResult.Perfect;
-    //}
+ 
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6931752449272227590}
+  - component: {fileID: 4359659277966412067}
   m_Layer: 0
   m_Name: HoldTile
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4359659277966412067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931752449272227585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9387d968838041845859a6caf7f8ca1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  targetY: -4.5
+  spriteRenderer: {fileID: 3957857201055996967}
 --- !u!1001 &8854744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,5 +224,10 @@ PrefabInstance:
 --- !u!4 &3957857201055996966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6259908957331372518, guid: 94f3a2e8a61e74a4aafd8382109891e5, type: 3}
+  m_PrefabInstance: {fileID: 6931752449051960768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3957857201055996967 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6259908957331372519, guid: 94f3a2e8a61e74a4aafd8382109891e5, type: 3}
   m_PrefabInstance: {fileID: 6931752449051960768}
   m_PrefabAsset: {fileID: 0}

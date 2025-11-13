@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 6259908957331372519}
   - component: {fileID: -924392700340043461}
   m_Layer: 0
-  m_Name: HoldTiles
+  m_Name: HoldTileNoEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

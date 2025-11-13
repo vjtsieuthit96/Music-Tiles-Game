@@ -32,11 +32,11 @@ public class InputHandler : MonoBehaviour
             ProcessTouch(worldPos, true);
         }
 
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        //    ProcessTouch(worldPos, false);
-        //}
+        if (Input.GetMouseButtonUp(0))
+        {
+            Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            ProcessTouch(worldPos, false);
+        }
     }
 
     private void HandleTouchInput()
@@ -66,12 +66,12 @@ public class InputHandler : MonoBehaviour
             normalTile.OnHit();
         }
 
-        //if (hit.TryGetComponent(out HoldTile holdTile))
-        //{
-        //    if (isDown)
-        //        holdTile.OnHoldStart();
-        //    else
-        //        holdTile.OnHoldEnd();
-        //}
+        if (hit.TryGetComponent(out HoldTile holdTile))
+        {
+            if (isDown)
+                holdTile.OnHoldStart();
+            else
+                holdTile.OnHoldEnd();
+        }
     }
 }
