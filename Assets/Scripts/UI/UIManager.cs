@@ -129,6 +129,7 @@ public class UIManager : MonoBehaviour
         };
     }
     #endregion
+
     #region Star Slider
     public void UpdateStarSlider(HitResult result)
     {
