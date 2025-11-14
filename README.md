@@ -16,6 +16,7 @@ To add a new song, make sure:
 🎨 Design Choices:
 - Song selection via TMP_Dropdown: Allows players to easily choose from available songs.
 - Separate AudioSources for preview and gameplay: Preview music plays when selecting a song. Once Play is pressed, the clip is passed to GameManager for synchronized beatmap playback.
+- Scoring based on combos enhances the sense of achievement, thereby creating a fresh and engaging experience for the player.
 - Beatmap loading from StreamingAssets: Beatmaps are stored as .txt files in StreamingAssets/Beatmaps, making them easy to update and compatible with Android builds.
 - Note spawning via event system: BeatmapReader triggers OnNoteSpawn at the correct time, separating data parsing from gameplay rendering.
 - Callback after beatmap loading: Ensures the game only starts when all data is ready, preventing sync issues between music and notes.
