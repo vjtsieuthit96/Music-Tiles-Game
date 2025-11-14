@@ -40,7 +40,7 @@ public class BeatmapReader : MonoBehaviour
         string path = Path.Combine(Application.streamingAssetsPath, "Beatmaps", fileName);
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-    StartCoroutine(LoadFromAndroid(path, onComplete)); // ✅ truyền callback
+    StartCoroutine(LoadFromAndroid(path, onComplete));
 #else
         if (!File.Exists(path))
         {
