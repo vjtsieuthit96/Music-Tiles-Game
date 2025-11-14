@@ -10,7 +10,7 @@ You can create a beatmap using the "BeatMapMaker" scene.
   - Move this file to Assets/StreamingAssets/Beatmaps to load the new beatmap.
 To add a new song, make sure:
 - The song has a corresponding beatmap file.
-- The song name is added to Hierarchy > Canvas > MusicList > SongNames.
+- The song name must be added to Hierarchy > Canvas > MusicList > SongNames.
 
 
 🎨 Design Choices:
