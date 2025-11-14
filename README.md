@@ -24,8 +24,8 @@ Design Choices:
  Asset Attribution
 This project uses the following external assets:
 - JMO Assets
-Downloaded from the Unity Asset Store for tap effect
-Link: https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565?srsltid=AfmBOooFc4kyCP5lK1bzCshz0BamQhcC7R6WM-rN-qx9Q2CQIxiXIbk8
+Downloaded from the Unity Asset Store for tap effect.
+(https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565?srsltid=AfmBOooFc4kyCP5lK1bzCshz0BamQhcC7R6WM-rN-qx9Q2CQIxiXIbk8)
 - Images from Google Search & AI
 Some UI and background images were sourced from Google. These are used for non-commercial, educational purposes only.
 - Sound Effects
