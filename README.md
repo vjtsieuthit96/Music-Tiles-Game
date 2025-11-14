@@ -2,7 +2,8 @@ How to run the Project
 - Open the scene named "MainGameScene" located at Assets/Scenes/MainGameScene.
 - Select a song from the dropdown list.
 - Press Play to start the game.
-- When you lose, the screen will switch to the GameOver scene. Press PlayAgain to restart.
+- When you lose, the screen will switch to the GameOver scene, press PlayAgain to restart.
+
 You can create a beatmap using the "BeatMapMaker" scene.
   - First, import a new music file into Assets/Resources/Musics.
   - After creating the beatmap, the file will be saved in Assets as songName.txt.
