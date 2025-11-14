@@ -1,0 +1,34 @@
+How to run the Project
+- Open the scene named "MainGameScene" located at Assets/Scenes/MainGameScene.
+- Select a song from the dropdown list.
+- Press Play to start the game.
+- When you lose, the screen will switch to the GameOver scene. Press PlayAgain to restart.
+You can create a beatmap using the "BeatMapMaker" scene.
+  - First, import a new music file into Assets/Resources/Musics.
+  - After creating the beatmap, the file will be saved in Assets as songName.txt.
+  - Move this file to Assets/StreamingAssets/Beatmaps to load the new beatmap.
+To add a new song, make sure:
+- The song has a corresponding beatmap file.
+- The song name is added to Hierarchy > Canvas > MusicList > SongNames.
+
+
+Design Choices:
+- Song selection via TMP_Dropdown: Allows players to easily choose from available songs.
+- Separate AudioSources for preview and gameplay: Preview music plays when selecting a song. Once Play is pressed, the clip is passed to GameManager for synchronized beatmap playback.
+- Beatmap loading from StreamingAssets: Beatmaps are stored as .txt files in StreamingAssets/Beatmaps, making them easy to update and compatible with Android builds.
+- Note spawning via event system: BeatmapReader triggers OnNoteSpawn at the correct time, separating data parsing from gameplay rendering.
+- Callback after beatmap loading: Ensures the game only starts when all data is ready, preventing sync issues between music and notes.
+- Tile reuse via PoolManager: Improves performance and reduces overhead by reusing note objects.
+- Modular architecture: Components like MusicListManager, GameManager, and BeatmapReader are separated for better maintainability and scalability.
+
+ Asset Attribution
+This project uses the following external assets:
+- JMO Assets
+Downloaded from the Unity Asset Store for tap effect
+Link: https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565?srsltid=AfmBOooFc4kyCP5lK1bzCshz0BamQhcC7R6WM-rN-qx9Q2CQIxiXIbk8
+- Images from Google Search & AI
+Some UI and background images were sourced from Google. These are used for non-commercial, educational purposes only.
+- Sound Effects
+Downloaded from Pixabay — all sound effects are royalty-free.
+- Music Tracks
+Downloaded from Nhaccuatui.com for demo purposes only.
