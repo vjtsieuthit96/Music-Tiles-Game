@@ -1,4 +1,6 @@
 🛠️ How to run the Project
+- Select the aspect ratio: Full HD (Portrait) for the game window.
+<img width="207" height="225" alt="image" src="https://github.com/user-attachments/assets/ac0934e1-03d4-4cbd-99e1-e5c8dd1b70da" />
 - Open the scene named "MainGameScene" located at Assets/Scenes/MainGameScene.
 - Select a song from the dropdown list.
 - Press Play to start the game.
